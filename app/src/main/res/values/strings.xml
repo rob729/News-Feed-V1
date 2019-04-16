@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">News 3.0</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="verge">Verge</string>
+    <string name="wired">Wired</string>
+    <string name="the_hindu">The Hindu</string>
+    <string name="espn">ESPN</string>
+    <string name="reddit">Reddit</string>
+    <string name="the_next_web">The Next Web</string>
+    <string name="engadget">Engadget</string>
+    <string name="new_scientist">New Scientist</string>
+    <string name="techcrunch">Techcrunch</string>
+    <string name="error_in_loading">Error in loading</string>
+    <string name="detail">detail</string>
+    <string name="title">Title</string>
+</resources>

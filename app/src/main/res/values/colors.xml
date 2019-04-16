@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1f2d61</color>
+    <color name="colorPrimaryDark">#18244e</color>
+    <color name="colorAccent">#4258BF</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="verge">#6A1B9A</color>
+    <color name="wired">#424242</color>
+    <color name="techcrunch">#008577</color>
+    <color name="hindu">#008577</color>
+    <color name="espn">#D32F2F</color>
+    <color name="reddit">#E64A19</color>
+    <color name="tnw">#C2185B</color>
+    <color name="engadget">#424242</color>
+    <color name="scientist">#303F9F</color>
+
+
+</resources>
