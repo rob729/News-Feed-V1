@@ -22,6 +22,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     dataBinding {
         enabled = true
@@ -50,4 +58,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.4.0'
     implementation 'com.squareup.moshi:moshi:1.7.0'
+
+    implementation("io.coil-kt:coil:0.6.0")
+
+    implementation 'com.thefinestartist:finestwebview:1.2.7'
+
 }
