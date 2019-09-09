@@ -3,7 +3,6 @@ package com.example.robin.news30.network
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 object NewsApi {
 
     private val BASE_URL = "https://newsapi.org/v2/"

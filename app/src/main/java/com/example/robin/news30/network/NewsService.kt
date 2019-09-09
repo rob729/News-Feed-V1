@@ -8,5 +8,4 @@ import retrofit2.http.Url
 interface NewsService {
     @GET
     fun getNews(@Url url: String): Call<News>
-
 }

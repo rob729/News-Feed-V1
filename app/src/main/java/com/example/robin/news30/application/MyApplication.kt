@@ -16,5 +16,4 @@ class MyApplication : Application() {
             modules(AppModule.appModule)
         }
     }
-
 }

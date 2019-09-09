@@ -25,7 +25,6 @@ class NewsAdapter internal constructor(
     private val ctx: Context
 ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-
     private var articlesList: ArrayList<Articles>? = ArrayList()
 
     var binding: ItemRowBinding? = null
@@ -41,7 +40,6 @@ class NewsAdapter internal constructor(
                 Log.e("TAG", "" + repos.totalResults)
                 articlesList = ArrayList(repos.articles)
                 notifyDataSetChanged()
-
             }
         })
     }

@@ -10,7 +10,6 @@ class News {
         this.articles = n.articles
     }
 
-
     constructor(articles: List<Articles>, status: String, totalResults: Int?) {
         this.articles = articles
         this.status = status

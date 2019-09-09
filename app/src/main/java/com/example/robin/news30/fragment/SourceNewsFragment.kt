@@ -1,6 +1,5 @@
 package com.example.robin.news30.fragment
 
-
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -17,13 +16,13 @@ import com.example.robin.news30.databinding.FragmentSourceNewsBinding
 import com.example.robin.news30.viewmodel.NewsSourceViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
 class SourceNewsFragment : Fragment() {
 
     private val newsSourceViewModel: NewsSourceViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -80,11 +79,8 @@ class SourceNewsFragment : Fragment() {
                 binding.recyclerView.visibility = View.GONE
             } else {
                 binding.loading.visibility = View.GONE
-
             }
         })
         return binding.root
     }
-
-
 }

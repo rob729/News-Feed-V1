@@ -32,11 +32,10 @@ class NewsSourceViewModel : ViewModel() {
 
     lateinit var source: String
 
-
     fun fetchRepos() {
         _loading.value = true
         newscall =
-            NewsApi.instance?.getNews("top-headlines?sources=$source&apiKey=4663b6001744472eaac1f5aa16076a7a");
+            NewsApi.instance?.getNews("top-headlines?sources=$source&apiKey=4663b6001744472eaac1f5aa16076a7a")
         newscall?.enqueue(object : Callback<News> {
             override fun onResponse(call: Call<News>, @NonNull response: Response<News>) {
                 _newsLoadError.value = false
@@ -53,7 +52,6 @@ class NewsSourceViewModel : ViewModel() {
                 newscall = null
             }
         })
-
     }
 
     override fun onCleared() {

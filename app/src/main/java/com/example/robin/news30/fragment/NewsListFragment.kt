@@ -1,6 +1,5 @@
 package com.example.robin.news30.fragment
 
-
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -29,7 +28,8 @@ class NewsListFragment : Fragment() {
     private val editor: SharedPreferences.Editor by lazy { sp.edit() }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -49,7 +49,6 @@ class NewsListFragment : Fragment() {
             crossfade(true)
             placeholder(R.drawable.ic_panorama_black_24dp)
             transformations(CircleCropTransformation())
-
         }
 
         binding.wiredLogo.load("https://www.wired.com/apple-touch-icon.png") {
@@ -99,7 +98,6 @@ class NewsListFragment : Fragment() {
             placeholder(R.drawable.ic_panorama_black_24dp)
             transformations(CircleCropTransformation())
         }
-
 
         binding.verge.setOnClickListener {
             setInformation("the-verge")
@@ -165,5 +163,4 @@ class NewsListFragment : Fragment() {
             else -> "News"
         }
     }
-
 }
