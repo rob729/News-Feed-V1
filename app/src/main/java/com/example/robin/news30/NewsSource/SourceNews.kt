@@ -16,9 +16,12 @@ import com.example.robin.news30.Data.NewsAdapter
 import com.example.robin.news30.NewsListFragment
 import com.example.robin.news30.R
 import com.example.robin.news30.databinding.FragmentSourceNewsBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class SourceNews : Fragment() {
+
+    private val newsSourceViewModel: NewsSourceViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +30,7 @@ class SourceNews : Fragment() {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentSourceNewsBinding>(inflater,
             R.layout.fragment_source_news, container, false)
-        val newsSourceViewModel = ViewModelProviders.of(this).get(NewsSourceViewModel::class.java)
+        //val newsSourceViewModel = ViewModelProviders.of(this).get(NewsSourceViewModel::class.java)
 
         val sp = PreferenceManager.getDefaultSharedPreferences(context)
         val source = sp.getString("source", "the-verge")

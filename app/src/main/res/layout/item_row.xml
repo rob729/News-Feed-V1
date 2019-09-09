@@ -27,7 +27,6 @@
                     android:layout_height="180dp"
                     android:fitsSystemWindows="true"
                     android:layout_marginTop="4dp"
-                    android:scaleType="centerCrop"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/splash_icon"/>
 

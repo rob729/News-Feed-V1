@@ -33,9 +33,6 @@ class NewsSourceViewModel: ViewModel(){
 
     lateinit var source: String
 
-//    init {
-//        fetchRepos()
-//    }
 
      fun fetchRepos(){
         _loading.value = true

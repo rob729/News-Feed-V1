@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
@@ -16,6 +17,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import com.example.robin.news30.NewsSource.NewsSourceViewModel
 import com.example.robin.news30.R
@@ -86,6 +88,7 @@ class NewsAdapter internal constructor(
             binding?.imgNews?.load(articles.urlToImage){
                 crossfade(true)
                 placeholder(R.drawable.ic_loading)
+                binding?.imgNews?.scaleType = ImageView.ScaleType.CENTER_CROP
             }
             binding!!.titleNews.text  = articles.title
             binding!!.card.preventCornerOverlap = false
