@@ -1,4 +1,4 @@
-package com.example.robin.news30.Data
+package com.example.robin.news30.model
 
 class News {
 

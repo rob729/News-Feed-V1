@@ -1,4 +1,4 @@
-package com.example.robin.news30
+package com.example.robin.news30.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

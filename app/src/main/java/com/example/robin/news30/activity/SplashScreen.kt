@@ -1,8 +1,8 @@
-package com.example.robin.news30
+package com.example.robin.news30.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class SplashScreen : AppCompatActivity() {
 

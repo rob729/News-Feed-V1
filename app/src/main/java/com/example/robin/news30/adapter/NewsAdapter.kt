@@ -1,9 +1,6 @@
-package com.example.robin.news30.Data
+package com.example.robin.news30.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,19 +10,14 @@ import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import coil.size.Scale
-import coil.transform.CircleCropTransformation
-import com.example.robin.news30.NewsSource.NewsSourceViewModel
 import com.example.robin.news30.R
 import com.example.robin.news30.databinding.ItemRowBinding
-import com.squareup.picasso.Picasso
-import java.util.ArrayList
-import com.example.robin.news30.databinding.LayoutRowBinding
+import com.example.robin.news30.model.Articles
+import com.example.robin.news30.viewmodel.NewsSourceViewModel
 import com.thefinestartist.finestwebview.FinestWebView
+import java.util.*
 
 class NewsAdapter internal constructor(
     listViewModel: NewsSourceViewModel,
@@ -41,7 +33,7 @@ class NewsAdapter internal constructor(
     val itemCounts: Int = articlesList!!.size
 
     init {
-        listViewModel.news.observe(lifecycleOwner, Observer{ repos ->
+        listViewModel.news.observe(lifecycleOwner, Observer { repos ->
 
             if (articlesList != null)
                 articlesList!!.clear()
@@ -56,7 +48,8 @@ class NewsAdapter internal constructor(
 
     @NonNull
     override fun onCreateViewHolder(@NonNull viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_row, viewGroup, false)
+        val view =
+            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_row, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -65,7 +58,7 @@ class NewsAdapter internal constructor(
     }
 
     override fun getItemCount(): Int {
-         return  articlesList!!.size
+        return articlesList!!.size
     }
 
     inner class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -85,14 +78,14 @@ class NewsAdapter internal constructor(
         }
 
         fun bind(articles: Articles) {
-            binding?.imgNews?.load(articles.urlToImage){
+            binding?.imgNews?.load(articles.urlToImage) {
                 crossfade(true)
                 placeholder(R.drawable.ic_loading)
                 binding?.imgNews?.scaleType = ImageView.ScaleType.CENTER_CROP
             }
-            binding!!.titleNews.text  = articles.title
+            binding!!.titleNews.text = articles.title
             binding!!.card.preventCornerOverlap = false
-            binding!!.detail.text  = articles.description
+            binding!!.detail.text = articles.description
         }
     }
 }

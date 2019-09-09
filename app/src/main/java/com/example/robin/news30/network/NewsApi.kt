@@ -1,4 +1,4 @@
-package com.example.robin.news30.Data
+package com.example.robin.news30.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

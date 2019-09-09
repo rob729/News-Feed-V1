@@ -1,4 +1,4 @@
-package com.example.robin.news30
+package com.example.robin.news30.fragment
 
 
 import android.content.SharedPreferences
@@ -14,7 +14,9 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import coil.api.load
 import coil.transform.CircleCropTransformation
+import com.example.robin.news30.R
 import com.example.robin.news30.databinding.FragmentNewsListBinding
+import com.example.robin.news30.utils.Utils
 
 class NewsListFragment : Fragment() {
 
