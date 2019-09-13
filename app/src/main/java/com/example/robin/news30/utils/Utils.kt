@@ -11,4 +11,6 @@ object Utils {
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
+
+    val apiKey = "4663b6001744472eaac1f5aa16076a7a"
 }

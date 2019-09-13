@@ -15,11 +15,15 @@ import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.robin.news30.R
 import com.example.robin.news30.databinding.FragmentNewsListBinding
+import com.example.robin.news30.network.NewsApi
 import com.example.robin.news30.utils.Utils
+import org.koin.android.ext.android.inject
 
 class NewsListFragment : Fragment() {
 
     private val args = Bundle()
+    val serviceApi: NewsApi by inject()
+
     private val sp: SharedPreferences by lazy {
         PreferenceManager.getDefaultSharedPreferences(
             context

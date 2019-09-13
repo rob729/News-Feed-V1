@@ -1,17 +1,23 @@
 package com.example.robin.news30.viewmodel
 
 import android.util.Log
-import androidx.annotation.NonNull
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.robin.news30.model.News
 import com.example.robin.news30.network.NewsApi
+import com.example.robin.news30.utils.Utils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NewsSourceViewModel : ViewModel() {
+class NewsSourceViewModel(news: NewsApi) : ViewModel() {
+
+    val newsApi: NewsApi = news
 
     private val _news = MutableLiveData<News>()
 
@@ -34,24 +40,40 @@ class NewsSourceViewModel : ViewModel() {
 
     fun fetchRepos() {
         _loading.value = true
-        newscall =
-            NewsApi.instance?.getNews("top-headlines?sources=$source&apiKey=4663b6001744472eaac1f5aa16076a7a")
-        newscall?.enqueue(object : Callback<News> {
-            override fun onResponse(call: Call<News>, @NonNull response: Response<News>) {
-                _newsLoadError.value = false
-                Log.e("TAG", "OnResponse Success $source")
-                _news.value = response.body()
-                _loading.value = false
-                newscall = null
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = newsApi.initalizeRetrofit()
+                .getNews("top-headlines?sources=$source&apiKey=${Utils.apiKey}")
+            withContext(Dispatchers.IO) {
+                try {
+
+                    request.enqueue(object : Callback<News> {
+
+                        override fun onResponse(call: Call<News>, response: Response<News>) {
+                            _newsLoadError.value = false
+                            _news.value = response.body()
+                            _loading.value = false
+                            Log.e("TAG", "${response.body()?.totalResults}")
+                        }
+
+                        override fun onFailure(call: Call<News>, t: Throwable) {
+                            _newsLoadError.value = true
+                            _loading.value = false
+                            Log.e("TAG", "fail")
+                        }
+
+
+                    })
+                } catch (e: Exception) {
+                    Log.e(
+                        "MainActicity",
+                        "Exception ${e.message}"
+                    )
+                }
             }
 
-            override fun onFailure(call: Call<News>, t: Throwable) {
-                Log.e("TAG", "Error in loading ")
-                _newsLoadError.value = true
-                _loading.value = false
-                newscall = null
-            }
-        })
+        }
+
     }
 
     override fun onCleared() {
