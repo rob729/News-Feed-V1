@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.robin.news30.R
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,89 +1,52 @@
 package com.example.robin.news30.adapter
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.annotation.NonNull
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
-import com.example.robin.news30.R
+import com.bumptech.glide.RequestManager
 import com.example.robin.news30.databinding.ItemRowBinding
 import com.example.robin.news30.model.Articles
-import com.example.robin.news30.viewmodel.NewsSourceViewModel
-import com.thefinestartist.finestwebview.FinestWebView
-import java.util.*
+import com.example.robin.news30.utils.Utils
 
-class NewsAdapter internal constructor(
-    listViewModel: NewsSourceViewModel,
-    lifecycleOwner: LifecycleOwner,
-    private val ctx: Context
-) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(val requestManager: RequestManager) :
+    ListAdapter<Articles, NewsAdapter.ViewHolder>(ArticleDiffCallbacks()) {
 
-    private var articlesList: ArrayList<Articles>? = ArrayList()
-
-    var binding: ItemRowBinding? = null
-
-    val itemCounts: Int = articlesList!!.size
-
-    init {
-        listViewModel.news.observe(lifecycleOwner, Observer { repos ->
-
-            if (articlesList != null)
-                articlesList!!.clear()
-            if (repos != null) {
-                Log.e("TAG", "" + repos.totalResults)
-                articlesList = ArrayList(repos.articles)
-                notifyDataSetChanged()
-            }
-        })
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemRowBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
-    @NonNull
-    override fun onCreateViewHolder(@NonNull viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_row, viewGroup, false)
-        return ViewHolder(view)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
     }
 
-    override fun onBindViewHolder(@NonNull viewHolder: ViewHolder, i: Int) {
-        viewHolder.bind(articlesList!![i])
-    }
+    inner class ViewHolder(private val binding: ItemRowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Articles) {
+            requestManager.load(item.urlToImage)
+                .centerCrop()
+                .into(binding.imgNews)
 
-    override fun getItemCount(): Int {
-        return articlesList!!.size
-    }
-
-    inner class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        init {
-            binding = DataBindingUtil.bind(itemView)
-            itemView.setOnClickListener {
-
-                FinestWebView.Builder(ctx)
-                    .showUrl(true)
-                    .showSwipeRefreshLayout(true)
-                    .webViewBuiltInZoomControls(true)
-                    .titleColorRes(R.color.white)
-                    .urlColorRes(R.color.white)
-                    .show(articlesList!![adapterPosition].url)
-            }
-        }
-
-        fun bind(articles: Articles) {
-            binding?.imgNews?.load(articles.urlToImage) {
-                crossfade(true)
-                placeholder(R.drawable.ic_loading)
-                binding?.imgNews?.scaleType = ImageView.ScaleType.CENTER_CROP
-            }
-            binding!!.titleNews.text = articles.title
-            binding!!.card.preventCornerOverlap = false
-            binding!!.detail.text = articles.description
+            binding.titleNews.text = item.title
+            binding.card.preventCornerOverlap = false
+            binding.detail.text = item.description
+            binding.relLayout.setOnClickListener { Utils.setWebView(item.url) }
         }
     }
+
+    class ArticleDiffCallbacks : DiffUtil.ItemCallback<Articles>() {
+        override fun areItemsTheSame(oldItem: Articles, newItem: Articles): Boolean {
+            return oldItem.url == newItem.url
+        }
+
+        override fun areContentsTheSame(oldItem: Articles, newItem: Articles): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+
 }

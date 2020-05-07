@@ -12,7 +12,7 @@
             <argument android:defaultValue="News" android:name="Name"/>
         </action>
     </fragment>
-    <fragment android:id="@+id/sourceNews" android:name="com.example.robin.news30.fragment.SourceNewsFragment"
+    <fragment android:id="@+id/sourceNews" android:name="com.example.robin.news30.fragment.NewsSourceFragment"
               android:label="{Name}">
         <argument android:name="Name"/>
     </fragment>

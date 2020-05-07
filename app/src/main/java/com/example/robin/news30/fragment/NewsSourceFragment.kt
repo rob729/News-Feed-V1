@@ -3,26 +3,32 @@ package com.example.robin.news30.fragment
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.robin.news30.R
 import com.example.robin.news30.adapter.NewsAdapter
 import com.example.robin.news30.databinding.FragmentSourceNewsBinding
+import com.example.robin.news30.model.NewsResource
 import com.example.robin.news30.utils.NetworkStateReceiver
 import com.example.robin.news30.viewmodel.NewsSourceViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class SourceNewsFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiverListener {
+class NewsSourceFragment : DaggerFragment(), NetworkStateReceiver.NetworkStateReceiverListener {
 
-    private val newsSourceViewModel: NewsSourceViewModel by viewModel()
+    @Inject
+    lateinit var newsSourceViewModel: NewsSourceViewModel
+
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
+
     lateinit var binding: FragmentSourceNewsBinding
     private var networkStateReceiver: NetworkStateReceiver? = null
 
@@ -38,10 +44,7 @@ class SourceNewsFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiver
             R.layout.fragment_source_news, container, false
         )
 
-        val sp = PreferenceManager.getDefaultSharedPreferences(context)
-        val source = sp.getString("source", "the-verge")
-
-        newsSourceViewModel.source = source
+        newsSourceViewModel.source = arguments?.get("source").toString()
 
         networkStateReceiver = NetworkStateReceiver()
         networkStateReceiver!!.addListener(this)
@@ -58,43 +61,31 @@ class SourceNewsFragment : Fragment(), NetworkStateReceiver.NetworkStateReceiver
                 DividerItemDecoration.VERTICAL
             )
         )
-        binding.recyclerView.adapter = context?.let {
-            NewsAdapter(
-                newsSourceViewModel,
-                this,
-                it
-            )
-        }
+        binding.recyclerView.adapter = newsAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.setItemViewCacheSize(8)
 
         newsSourceViewModel.news.observe(this, Observer {
-            if (it != null) {
-                binding.recyclerView.visibility = View.VISIBLE
+            when (it.status) {
+                NewsResource.Status.LOADING -> {
+                    binding.loading.visibility = View.VISIBLE
+                    binding.errorTxt.visibility = View.GONE
+                }
+
+                NewsResource.Status.SUCCESS -> {
+                    newsAdapter.submitList(it.data?.articles)
+                    binding.loading.visibility = View.GONE
+                    binding.errorTxt.visibility = View.GONE
+                }
+
+                NewsResource.Status.ERROR -> {
+                    Log.e("TAG", it.message + " error")
+                    binding.loading.visibility = View.GONE
+                    binding.errorTxt.visibility = View.VISIBLE
+                }
             }
         })
 
-        newsSourceViewModel.newsLoadError.observe(this, Observer {
-            if (it) {
-                binding.loading.visibility = View.GONE
-                binding.errorTxt.visibility = View.VISIBLE
-                binding.recyclerView.visibility = View.GONE
-            } else {
-                binding.loading.visibility = View.VISIBLE
-                binding.errorTxt.visibility = View.GONE
-                binding.recyclerView.visibility = View.VISIBLE
-            }
-        })
 
-        newsSourceViewModel.loading.observe(this, Observer {
-            if (it) {
-                binding.loading.visibility = View.VISIBLE
-                binding.errorTxt.visibility = View.GONE
-                binding.recyclerView.visibility = View.GONE
-            } else {
-                binding.loading.visibility = View.GONE
-            }
-        })
         return binding.root
     }
 

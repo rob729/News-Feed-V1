@@ -1,19 +1,21 @@
 package com.example.robin.news30.application
 
-import android.app.Application
-import com.example.robin.news30.di.AppModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
+import com.example.robin.news30.di.DaggerAppComponent
+import com.example.robin.news30.utils.Utils
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
-class MyApplication : Application() {
+
+class MyApplication : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin {
-            androidLogger()
-            androidContext(this@MyApplication)
-            modules(AppModule.appModule)
-        }
+        Utils.initialiseWebView(applicationContext)
     }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder().application(this).build()
+    }
+
+
 }

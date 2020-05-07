@@ -9,8 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/bgapps"
-    >
+            android:background="@drawable/bgapps">
         <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,8 +40,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/verge_logo"
-                            android:layout_width="85dp"
-                            android:layout_height="85dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_border_color="@color/verge"
                             app:civ_shadow="true"
@@ -87,8 +86,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/wired_logo"
-                            android:layout_width="85dp"
-                            android:layout_height="85dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_shadow="true"
                             app:civ_border_color="@color/wired"
@@ -131,8 +130,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/techcrunch_logo"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_shadow="true"
                             android:layout_marginBottom="5dp"
@@ -173,8 +172,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/hindu_logo"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_shadow="true"
                             android:layout_marginBottom="5dp"
@@ -216,8 +215,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/espn_logo"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_shadow="true"
                             app:civ_shadow_radius="2"
@@ -259,8 +258,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/reddit_logo"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_shadow="true"
                             android:layout_centerHorizontal="true"
@@ -302,8 +301,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/tnw_logo"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             android:layout_centerHorizontal="true"
                             app:civ_shadow="true"
@@ -346,8 +345,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/engadget_logo"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_shadow="true"
                             app:civ_shadow_radius="2"
@@ -389,8 +388,8 @@
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/scientist_logo"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             app:civ_border_width="1dp"
                             app:civ_shadow="true"
                             android:layout_centerHorizontal="true"

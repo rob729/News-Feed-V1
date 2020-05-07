@@ -1,11 +1,11 @@
 package com.example.robin.news30.fragment
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,23 +13,21 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import coil.api.load
 import coil.transform.CircleCropTransformation
+import com.bumptech.glide.RequestManager
 import com.example.robin.news30.R
 import com.example.robin.news30.databinding.FragmentNewsListBinding
-import com.example.robin.news30.network.NewsApi
 import com.example.robin.news30.utils.Utils
-import org.koin.android.ext.android.inject
+import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_news_list.*
+import javax.inject.Inject
 
-class NewsListFragment : Fragment() {
+
+class NewsListFragment : DaggerFragment(), View.OnClickListener {
+
+    @Inject
+    lateinit var requestManager: RequestManager
 
     private val args = Bundle()
-    val serviceApi: NewsApi by inject()
-
-    private val sp: SharedPreferences by lazy {
-        PreferenceManager.getDefaultSharedPreferences(
-            context
-        )
-    }
-    private val editor: SharedPreferences.Editor by lazy { sp.edit() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,101 +47,32 @@ class NewsListFragment : Fragment() {
             toast.show()
         }
 
-        binding.vergeLogo.load("https://cdn.vox-cdn.com/uploads/chorus_asset/file/7395359/ios-icon.0.png") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
+        loadImageIntoImageView(binding.vergeLogo, Utils.getImageUrlFromSourceName("the-verge"))
+        loadImageIntoImageView(binding.wiredLogo, Utils.getImageUrlFromSourceName("wired"))
+        loadImageIntoImageView(binding.techcrunchLogo, Utils.getImageUrlFromSourceName("techcrunch"))
+        loadImageIntoImageView(binding.hinduLogo, Utils.getImageUrlFromSourceName("the-hindu"))
+        loadImageIntoImageView(binding.espnLogo, Utils.getImageUrlFromSourceName("espn-cric-info"))
+        loadImageIntoImageView(binding.redditLogo, Utils.getImageUrlFromSourceName("reddit-r-all"))
+        loadImageIntoImageView(binding.tnwLogo, Utils.getImageUrlFromSourceName("the-next-web"))
+        loadImageIntoImageView(binding.engadgetLogo, Utils.getImageUrlFromSourceName("engadget"))
+        loadImageIntoImageView(binding.scientistLogo, Utils.getImageUrlFromSourceName("new-scientist"))
 
-        binding.wiredLogo.load("https://www.wired.com/apple-touch-icon.png") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.hinduLogo.load("https://icon-locator.herokuapp.com/lettericons/T-120-ffffff.png") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.techcrunchLogo.load("https://cdn.techcrunch.cn/wp-content/themes/vip/techcrunch-cn-2014/assets/images/homescreen_TCIcon_ipad_2x.png") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.espnLogo.load("https://images-na.ssl-images-amazon.com/images/I/21h-OE4-X7L._SY355_.png") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.redditLogo.load("https://www.redditstatic.com/mweb2x/favicon/120x120.png") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.tnwLogo.load("https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/icons/apple-touch-icon-120x120.png?v=1540388712") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.engadgetLogo.load("https://s.blogsmithmedia.com/www.engadget.com/assets-h530cd5ea4f940095be1a3f313af013dc/images/apple-touch-icon-120x120.png?h=232a14b1a350de05a49b584a62abac9e") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.scientistLogo.load("https://www.newscientist.com/wp-content/themes/new-scientist/img/layup/touch-icon/144x144.png") {
-            crossfade(true)
-            placeholder(R.drawable.ic_panorama_black_24dp)
-            transformations(CircleCropTransformation())
-        }
-
-        binding.verge.setOnClickListener {
-            setInformation("the-verge")
-        }
-
-        binding.wired.setOnClickListener {
-            setInformation("wired")
-        }
-
-        binding.techcrunch.setOnClickListener {
-            setInformation("techcrunch")
-        }
-
-        binding.hindu.setOnClickListener {
-            setInformation("the-hindu")
-        }
-
-        binding.espn.setOnClickListener {
-            setInformation("espn-cric-info")
-        }
-
-        binding.reddit.setOnClickListener {
-            setInformation("reddit-r-all")
-        }
-
-        binding.tnw.setOnClickListener {
-            setInformation("the-next-web")
-        }
-        binding.engadget.setOnClickListener {
-            setInformation("engadget")
-        }
-        binding.scientist.setOnClickListener {
-            setInformation("new-scientist")
-        }
+        binding.verge.setOnClickListener(this)
+        binding.wired.setOnClickListener(this)
+        binding.techcrunch.setOnClickListener(this)
+        binding.hindu.setOnClickListener(this)
+        binding.espn.setOnClickListener(this)
+        binding.reddit.setOnClickListener(this)
+        binding.tnw.setOnClickListener(this)
+        binding.engadget.setOnClickListener(this)
+        binding.scientist.setOnClickListener(this)
 
         return binding.root
     }
 
     private fun setInformation(source: String) {
-        editor.putString("source", source)
-        editor.apply()
-        args.putString("Name", setName(source))
+        args.putString("source", source)
+        args.putString("Name", Utils.setName(source))
         val navOptions =
             NavOptions.Builder().setEnterAnim(R.anim.nav_default_enter_anim).setExitAnim(
                 R.anim.nav_default_exit_anim
@@ -153,18 +82,27 @@ class NewsListFragment : Fragment() {
         findNavController().navigate(R.id.sourceNews, args, navOptions)
     }
 
-    private fun setName(source: String): String {
-        return when (source) {
-            "the-verge" -> "Verge"
-            "wired" -> "Wired"
-            "techcrunch" -> "Techcrunch"
-            "the-hindu" -> "The Hindu"
-            "espn-cric-info" -> "ESPN"
-            "reddit-r-all" -> "Reddit"
-            "the-next-web" -> "The Next Web"
-            "engadget" -> "Engadget"
-            "new-scientist" -> "New Scientist"
-            else -> "News"
+    override fun onClick(v: View?) {
+        Log.e("TAG", "$v view")
+        when(v){
+            verge -> { setInformation("the-verge")
+                Log.e("TAG", "verge view")}
+            wired -> { setInformation("wired") }
+            techcrunch -> { setInformation("techcrunch") }
+            hindu-> { setInformation("the-hindu") }
+            reddit -> {  setInformation("reddit-r-all") }
+            espn -> { setInformation("espn-cric-info") }
+            tnw -> { setInformation("the-next-web") }
+            scientist -> { setInformation("new-scientist") }
+            engadget -> {  setInformation("engadget") }
+            else -> { Log.e("TAG", "$v view")}
         }
     }
+
+    private fun loadImageIntoImageView(imageView: ImageView, url: String){
+        requestManager.load(url)
+            .circleCrop()
+            .into(imageView)
+    }
+
 }
