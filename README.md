@@ -12,8 +12,8 @@ The following libraries were used in this project:-
 
  - [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel)
  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
- - [Coil](https://github.com/coil-kt/coil) 
- - [Koin](https://github.com/InsertKoinIO/koin)
+ - [Glide](https://github.com/bumptech/glide)
+ - [Dagger](https://github.com/google/dagger)
  - [Retrofit](https://github.com/square/retrofit)
  - [Gson](https://github.com/google/gson)
  - [FinestWebView-Android](https://github.com/TheFinestArtist/FinestWebView-Android)
@@ -21,8 +21,10 @@ The following libraries were used in this project:-
 ### Screenshots
 <table>
         <tr>
-        <td><img src = "https://user-images.githubusercontent.com/31350501/64904649-88f59d00-d6ea-11e9-96da-f4e9b628a2cf.jpg" height = "530" width="270"></td>
-        <td><img src = "https://user-images.githubusercontent.com/31350501/64904665-ceb26580-d6ea-11e9-9d92-ec26ce56c254.jpg" height = "530" width="270"></td>
-        <td><img src = "https://user-images.githubusercontent.com/31350501/64904671-e2f66280-d6ea-11e9-9afa-3161aa2761f7.jpg" height = "530" width="270"></td>
+        <td><img src = "https://user-images.githubusercontent.com/31350501/81507833-9ae11b80-931d-11ea-92eb-7779fbb2711e.png"  width="280"></td>
+        <td><img src = "https://user-images.githubusercontent.com/31350501/81507834-9caadf00-931d-11ea-9f1d-9499cc4d5c53.png" 
+width="280"></td>
+        <td><img src = "https://user-images.githubusercontent.com/31350501/81507835-9ddc0c00-931d-11ea-9159-03cbabd62796.png" 
+width="280"></td>
         </tr>
 </table>   
