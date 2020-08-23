@@ -1,6 +1,6 @@
 # News Feed
 
-[![Build Status](https://travis-ci.org/rob729/News.svg?branch=master)](https://travis-ci.org/rob729/News)
+[![Build Status](https://travis-ci.org/rob729/News-Feed.svg?branch=master)](https://travis-ci.org/rob729/News-Feed)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7359a2b60f974c04ab38a6481780c2eb)](https://www.codacy.com/manual/rob729/News?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rob729/News&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3cf040d355cfa3d4c3a4/maintainability)](https://codeclimate.com/github/rob729/News/maintainability)
 [![Platform](https://img.shields.io/badge/platform-android-blue.svg)](http://developer.android.com/index.html)
