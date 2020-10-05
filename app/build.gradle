@@ -7,16 +7,28 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
-    compileSdkVersion 28
+    signingConfigs {
+        quiet_hours {
+            storeFile file('/home/robin/Desktop/Play Store/News Feed/News_Feed.jks')
+            storePassword kotlin_version
+            keyPassword kotlin_version
+            keyAlias kotlin_version
+        }
+    }
+    compileSdkVersion 29
     defaultConfig {
-        applicationId "com.example.robin.news30"
+        applicationId "com.robin.news30"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -50,12 +62,12 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
-    implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0-rc02'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0-rc02'
 
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
     implementation 'com.google.code.gson:gson:2.8.6'

@@ -19,7 +19,21 @@
                 android:background="@color/colorPrimary"
                 app:layout_scrollFlags="enterAlways|scroll"
                 app:titleTextColor="@color/white"
-                android:theme="@style/ToolbarTheme"/>
+                android:theme="@style/ToolbarTheme"
+                app:title=" ">
+
+            <TextView
+                    android:id="@+id/title_toolbar"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/pacifico"
+                    android:gravity="center"
+                    android:textSize="24sp"
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"/>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
