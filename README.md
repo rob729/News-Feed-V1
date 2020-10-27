@@ -8,6 +8,8 @@
 
 Discover trending stories and the latest world news from various popular news source.
 
+<a href='https://play.google.com/store/apps/details?id=com.robin.news30'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="30%" height="30%"/></a>
+
 The following libraries were used in this project:-
 
  - [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel)
