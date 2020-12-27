@@ -15,18 +15,23 @@ The following libraries were used in this project:-
  - [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel)
  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
  - [Glide](https://github.com/bumptech/glide)
- - [Dagger](https://github.com/google/dagger)
+ - [Dagger2](https://github.com/google/dagger)
  - [Retrofit](https://github.com/square/retrofit)
- - [Gson](https://github.com/google/gson)
+ - [Moshi](https://github.com/square/moshi)
  - [FinestWebView-Android](https://github.com/TheFinestArtist/FinestWebView-Android)
+ - [Preferences DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
+ - [Navigation component](https://developer.android.com/guide/navigation)
 
 ### Screenshots
 <table>
         <tr>
-        <td><img src = "https://user-images.githubusercontent.com/31350501/81507833-9ae11b80-931d-11ea-92eb-7779fbb2711e.png"  width="280"></td>
-        <td><img src = "https://user-images.githubusercontent.com/31350501/81507834-9caadf00-931d-11ea-9f1d-9499cc4d5c53.png" 
+        <td><img src = "https://user-images.githubusercontent.com/31350501/103173183-1842a780-487f-11eb-9a8b-f121de9ab056.jpg"  width="280"></td>
+        <td><img src = "https://user-images.githubusercontent.com/31350501/103173185-1a0c6b00-487f-11eb-8272-88688cbe216c.jpg" 
 width="280"></td>
-        <td><img src = "https://user-images.githubusercontent.com/31350501/81507835-9ddc0c00-931d-11ea-9159-03cbabd62796.png" 
+        <td><img src = "https://user-images.githubusercontent.com/31350501/103173189-1d9ff200-487f-11eb-8bc7-0e56c63d36d1.jpg" 
 width="280"></td>
         </tr>
 </table>   
+
+## Preview
+<img src = "https://media.giphy.com/media/ertyGoy9DtPgu6fDXy/giphy.gif">
