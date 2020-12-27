@@ -1,21 +1,22 @@
 package com.robin.news30.application
 
-import com.robin.news30.di.DaggerAppComponent
+import android.app.Application
+import com.robin.news30.di.app.AppComponent
+import com.robin.news30.di.app.AppModule
+import com.robin.news30.di.app.DaggerAppComponent
 import com.robin.news30.utils.Utils
-import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
 
 
-class MyApplication : DaggerApplication() {
+class MyApplication : Application() {
+
+     val appComponent: AppComponent by lazy{
+         DaggerAppComponent.builder()
+             .appModule(AppModule(this))
+             .build()
+     }
 
     override fun onCreate() {
         super.onCreate()
         Utils.initialiseWebView(applicationContext)
     }
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().application(this).build()
-    }
-
-
 }

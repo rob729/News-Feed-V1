@@ -3,21 +3,29 @@ package com.robin.news30.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.robin.news30.R
-import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.robin.news30.application.MyApplication
+import com.robin.news30.databinding.ActivityMainBinding
+import com.robin.news30.di.activity.ActivityModule
+import com.techyourchance.dagger2course.screens.common.activities.BaseActivity
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         supportActionBar?.elevation = 0f
 
-        val navController = this.findNavController(R.id.home_container)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.home_container) as NavHostFragment
+        val navController = navHostFragment.navController
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
@@ -28,6 +36,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        appBarLayout.setExpanded(true, true)
+        binding.appBarLayout.setExpanded(true, true)
+    }
+
+    fun updateTittle(title: String){
+        binding.titleToolbar.text = title
     }
 }

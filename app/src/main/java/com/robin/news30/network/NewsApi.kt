@@ -1,12 +1,15 @@
 package com.robin.news30.network
 
 import com.robin.news30.model.News
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Url
+import retrofit2.http.Query
 
 interface NewsApi {
 
-    @GET
-    fun getNews(@Url url: String): Call<News>
+    @GET("top-headlines")
+    suspend fun getNews(
+        @Query("sources") source: String,
+        @Query("apiKey") apiKey: String
+    ): Response<News>
 }

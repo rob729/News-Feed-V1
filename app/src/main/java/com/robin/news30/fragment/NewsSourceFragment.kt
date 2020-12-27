@@ -1,6 +1,5 @@
 package com.robin.news30.fragment
 
-import android.app.Activity
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -9,23 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.robin.news30.R
+import com.google.android.material.snackbar.Snackbar
 import com.robin.news30.activity.MainActivity
+import com.robin.news30.adapter.NewsAdapter
+import com.robin.news30.databinding.FragmentSourceNewsBinding
 import com.robin.news30.model.NewsResource
 import com.robin.news30.utils.NetworkStateReceiver
 import com.robin.news30.viewmodel.NewsSourceViewModel
-import com.robin.news30.adapter.NewsAdapter
-import com.robin.news30.databinding.FragmentSourceNewsBinding
-import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_row.*
+import com.techyourchance.dagger2course.screens.common.fragments.BaseFragment
 import javax.inject.Inject
 
-class NewsSourceFragment : DaggerFragment(), NetworkStateReceiver.NetworkStateReceiverListener {
+class NewsSourceFragment : BaseFragment(), NetworkStateReceiver.NetworkStateReceiverListener {
 
     @Inject
     lateinit var newsSourceViewModel: NewsSourceViewModel
@@ -33,8 +30,15 @@ class NewsSourceFragment : DaggerFragment(), NetworkStateReceiver.NetworkStateRe
     @Inject
     lateinit var newsAdapter: NewsAdapter
 
-    lateinit var binding: FragmentSourceNewsBinding
+    private var _binding: FragmentSourceNewsBinding? = null
+    private val binding get() = _binding!!
+
     private var networkStateReceiver: NetworkStateReceiver? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        injector.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,13 +47,9 @@ class NewsSourceFragment : DaggerFragment(), NetworkStateReceiver.NetworkStateRe
     ): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_source_news, container, false
-        )
+        _binding = FragmentSourceNewsBinding.inflate(inflater, container, false)
 
-        (activity as MainActivity).title_toolbar.text = " "
-        newsSourceViewModel.source = arguments?.get("source").toString()
+        (activity as MainActivity).updateTittle(" ")
 
         networkStateReceiver = NetworkStateReceiver()
         networkStateReceiver!!.addListener(this)
@@ -58,50 +58,63 @@ class NewsSourceFragment : DaggerFragment(), NetworkStateReceiver.NetworkStateRe
             IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         )
 
-        newsSourceViewModel.fetchRepos()
-
-        binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
-        binding.recyclerView.adapter = newsAdapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-
-        newsSourceViewModel.news.observe(this, Observer {
-            when (it.status) {
-                NewsResource.Status.LOADING -> {
-                    binding.loading.visibility = View.VISIBLE
-                    binding.errorTxt.visibility = View.GONE
-                }
-
-                NewsResource.Status.SUCCESS -> {
-                    newsAdapter.submitList(it.data?.articles)
-                    binding.loading.visibility = View.GONE
-                    binding.errorTxt.visibility = View.GONE
-                }
-
-                NewsResource.Status.ERROR -> {
-                    Log.e("TAG", it.message + " error")
-                    binding.loading.visibility = View.GONE
-                    binding.errorTxt.visibility = View.VISIBLE
-                }
-            }
-        })
-
+        viewBindings()
 
         return binding.root
     }
 
+    private fun viewBindings(){
+        binding.apply {
+            recyclerView.apply {
+                addItemDecoration(
+                    DividerItemDecoration(
+                        context,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
+                adapter = newsAdapter
+                recyclerView.layoutManager = LinearLayoutManager(context)
+            }
+
+            newsSourceViewModel.news.observe(viewLifecycleOwner, {
+                when (it.status) {
+                    NewsResource.Status.LOADING -> {
+                        loading.visibility = View.VISIBLE
+                        errorTxt.visibility = View.GONE
+                    }
+
+                    NewsResource.Status.SUCCESS -> {
+                        newsAdapter.submitList(it.data?.articles)
+                        recyclerView.scheduleLayoutAnimation()
+                        loading.visibility = View.GONE
+                        errorTxt.visibility = View.GONE
+                    }
+
+                    NewsResource.Status.ERROR -> {
+                        Log.e("TAG", it.message + " error")
+                        loading.visibility = View.GONE
+                        errorTxt.visibility = View.VISIBLE
+                    }
+                }
+            })
+
+        }
+    }
+
     override fun networkAvailable() {
         if (binding.errorTxt.visibility == View.VISIBLE) {
-            newsSourceViewModel.fetchRepos()
+            newsSourceViewModel.fetchNews()
         }
     }
 
     override fun networkUnavailable() {
-        Toast.makeText(context, "Please check your internet connection", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "Please check your internet connection", Toast.LENGTH_SHORT).show()
+        Snackbar.make(binding.recyclerView, "Please check your internet connection", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onDestroy() {

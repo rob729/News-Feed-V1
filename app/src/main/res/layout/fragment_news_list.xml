@@ -1,427 +1,423 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/ParentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bgapps"
         tools:context=".fragment.NewsListFragment">
 
-    <ScrollView
-            android:id="@+id/ParentLayout"
+    <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bgapps">
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:paddingBottom="59dp"
+            android:rowCount="5">
 
-        <GridLayout
-                android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+                android:id="@+id/verge"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
-                android:columnCount="2"
-                android:columnOrderPreserved="false"
-                android:paddingBottom="59dp"
-                android:rowCount="5">
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:background="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="5dp">
 
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/verge"
-                    android:layout_width="0dp"
+            <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:background="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="5dp">
+                    android:layout_gravity="fill"
+                    android:background="@color/verge">
 
-                <RelativeLayout
-                        android:layout_width="fill_parent"
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/verge_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_color="@color/verge"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="@color/verge"
+                        app:civ_shadow_radius="2" />
+
+                <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill"
-                        android:background="@color/verge">
+                        android:layout_below="@id/verge_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/verge"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp" />
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/verge_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_color="@color/verge"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="@color/verge"
-                            app:civ_shadow_radius="2" />
+            </RelativeLayout>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/verge_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/verge"
-                            android:textColor="@android:color/white"
-                            android:textSize="22sp" />
+        </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/wired"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="5dp">
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/wired"
-                    android:layout_width="0dp"
+            <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="5dp">
+                    android:layout_gravity="fill"
+                    android:background="@color/wired">
 
-                <RelativeLayout
-                        android:layout_width="fill_parent"
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/wired_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_color="@color/wired"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="@color/wired"
+                        app:civ_shadow_radius="2" />
+
+                <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill"
-                        android:background="@color/wired">
+                        android:layout_below="@id/wired_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/wired"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp" />
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/wired_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_color="@color/wired"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="@color/wired"
-                            app:civ_shadow_radius="2" />
+            </RelativeLayout>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/wired_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/wired"
-                            android:textColor="@android:color/white"
-                            android:textSize="22sp" />
+        </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/techcrunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/techcrunch"
+                app:cardCornerRadius="5dp">
 
-            </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/techcrunch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="@color/techcrunch"
-                    app:cardCornerRadius="5dp">
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/techcrunch_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="#8BC34A"
+                        app:civ_shadow_radius="2" />
 
-                <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/techcrunch_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="#8BC34A"
-                            app:civ_shadow_radius="2" />
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/techcrunch_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/techcrunch"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/hindu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="5dp">
-
-                <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/hindu_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="#000000"
-                            app:civ_shadow_radius="2" />
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/hindu_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/the_hindu"
-                            android:textColor="@android:color/black"
-                            android:textSize="22sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/espn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="5dp">
-
-                <RelativeLayout
-                        android:layout_width="fill_parent"
+                <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/espn">
+                        android:layout_below="@id/techcrunch_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/techcrunch"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/espn_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="#8BC34A"
-                            app:civ_shadow_radius="2" />
+            </RelativeLayout>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/espn_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/espn"
-                            android:textColor="@android:color/white"
-                            android:textSize="22sp" />
+        </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/hindu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="5dp">
 
-            </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/reddit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="@color/reddit"
-                    app:cardCornerRadius="5dp">
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/hindu_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="#000000"
+                        app:civ_shadow_radius="2" />
 
-                <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/reddit_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="#8BC34A"
-                            app:civ_shadow_radius="2" />
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/reddit_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/reddit"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/tnw"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="@color/tnw"
-                    app:cardCornerRadius="5dp">
-
-                <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/tnw_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="#8BC34A"
-                            app:civ_shadow_radius="2" />
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tnw_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/the_next_web"
-                            android:textColor="@android:color/white"
-                            android:textSize="18sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/engadget"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="5dp">
-
-                <RelativeLayout
-                        android:layout_width="fill_parent"
+                <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/engadget">
+                        android:layout_below="@id/hindu_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/the_hindu"
+                        android:textColor="@android:color/black"
+                        android:textSize="22sp" />
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/engadget_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="#8BC34A"
-                            app:civ_shadow_radius="2" />
+            </RelativeLayout>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/engadget_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/engadget"
-                            android:textColor="@android:color/white"
-                            android:textSize="22sp" />
+        </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/espn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="5dp">
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/scientist"
-                    android:layout_width="wrap_content"
+            <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="5dp">
+                    android:background="@color/espn">
 
-                <RelativeLayout
-                        android:layout_width="fill_parent"
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/espn_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="#8BC34A"
+                        app:civ_shadow_radius="2" />
+
+                <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/scientist">
+                        android:layout_below="@id/espn_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/espn"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp" />
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                            android:id="@+id/scientist_logo"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            app:civ_border_color="@color/scientist"
-                            app:civ_border_width="1dp"
-                            app:civ_shadow="true"
-                            app:civ_shadow_color="@color/scientist"
-                            app:civ_shadow_radius="2" />
+            </RelativeLayout>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/scientist_logo"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="5dp"
-                            android:text="@string/new_scientist"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+        </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/reddit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/reddit"
+                app:cardCornerRadius="5dp">
 
-            </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-        </GridLayout>
-    </ScrollView>
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/reddit_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="#8BC34A"
+                        app:civ_shadow_radius="2" />
 
-</layout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/reddit_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/reddit"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/tnw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/tnw"
+                app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/tnw_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="#8BC34A"
+                        app:civ_shadow_radius="2" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tnw_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/the_next_web"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/engadget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/engadget">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/engadget_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="#8BC34A"
+                        app:civ_shadow_radius="2" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/engadget_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/engadget"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/scientist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/scientist">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/scientist_logo"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        app:civ_border_color="@color/scientist"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="@color/scientist"
+                        app:civ_shadow_radius="2" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scientist_logo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/new_scientist"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
+</ScrollView>

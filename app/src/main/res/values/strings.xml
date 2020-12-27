@@ -15,4 +15,6 @@
     <string name="error_in_loading">Error in loading</string>
     <string name="detail">detail</string>
     <string name="title">Title</string>
+    <string name="news_detail">News Detail</string>
+    <string name="news_title">News Title</string>
 </resources>

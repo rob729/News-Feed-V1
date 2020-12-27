@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.robin.news30.databinding.ItemRowBinding
 import com.robin.news30.model.Articles
+import com.robin.news30.utils.ImageLoader
 import com.robin.news30.utils.Utils
 
-class NewsAdapter(val requestManager: RequestManager) :
+class NewsAdapter(val imageLoader: ImageLoader) :
     ListAdapter<Articles, NewsAdapter.ViewHolder>(ArticleDiffCallbacks()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,10 +28,7 @@ class NewsAdapter(val requestManager: RequestManager) :
     inner class ViewHolder(private val binding: ItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Articles) {
-            requestManager.load(item.urlToImage)
-                .centerCrop()
-                .into(binding.imgNews)
-
+            item.urlToImage?.let { imageLoader.loadImage(binding.imgNews, it) }
             binding.titleNews.text = item.title
             binding.card.preventCornerOverlap = false
             binding.detail.text = item.description

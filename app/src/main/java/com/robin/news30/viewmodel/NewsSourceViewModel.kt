@@ -1,52 +1,34 @@
 package com.robin.news30.viewmodel
 
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.robin.news30.model.News
 import com.robin.news30.model.NewsResource
-import com.robin.news30.network.NewsApi
-import com.robin.news30.utils.Utils
+import com.robin.news30.repository.NewsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class NewsSourceViewModel(private val newsApi: NewsApi) : ViewModel() {
+class NewsSourceViewModel(
+    private val newsRepository: NewsRepository
+) : ViewModel() {
 
     private val _news = MutableLiveData<NewsResource<News>>()
 
     val news: LiveData<NewsResource<News>>
         get() = _news
 
-    lateinit var source: String
-
-    fun fetchRepos() {
-        _news.value = NewsResource.Loading()
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val request = newsApi.getNews("top-headlines?sources=$source&apiKey=${Utils.apiKey}")
-
-            request.enqueue(object : Callback<News> {
-
-                override fun onResponse(call: Call<News>, response: Response<News>) {
-                    if (response.isSuccessful) {
-                        _news.value = NewsResource.Success(response.body()!!)
-                    } else {
-                        _news.value =
-                            NewsResource.Error("Something went wrong ${response.message()}", null)
-                    }
-                }
-
-                override fun onFailure(call: Call<News>, t: Throwable) {
-                    _news.value = NewsResource.Error("Something went wrong ${t.message}", null)
-                }
-            })
-        }
-
+    init {
+        Log.e("TAG1", "init1")
+        fetchNews()
     }
 
+    fun fetchNews() {
+        _news.value = NewsResource.Loading()
+        CoroutineScope(Dispatchers.IO).launch {
+            _news.postValue(newsRepository.getNews())
+        }
+    }
 }

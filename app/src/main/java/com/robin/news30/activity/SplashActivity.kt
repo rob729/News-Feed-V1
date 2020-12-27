@@ -3,9 +3,9 @@ package com.robin.news30.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dagger.android.support.DaggerAppCompatActivity
+import com.techyourchance.dagger2course.screens.common.activities.BaseActivity
 
-class SplashActivity : DaggerAppCompatActivity() {
+class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

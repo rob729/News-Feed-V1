@@ -1,7 +1,7 @@
 package com.robin.news30.model
 
 import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 @Keep
-class News(@SerializedName("articles") val articles: List<Articles>)
+class News(@Json(name = "articles") val articles: List<Articles>)
