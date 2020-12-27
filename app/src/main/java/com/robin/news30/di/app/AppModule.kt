@@ -2,7 +2,6 @@ package com.robin.news30.di.app
 
 import android.app.Application
 import com.robin.news30.network.NewsApi
-import com.robin.news30.utils.Utils
 import com.techyourchance.dagger2course.common.dependnecyinjection.app.AppScoped
 import dagger.Module
 import dagger.Provides
@@ -14,6 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module
 class AppModule(private val application: Application) {
 
+    private val BASE_URL = "https://newsapi.org/v2/"
     private val loggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val okHttpClient = OkHttpClient.Builder()
@@ -24,7 +24,7 @@ class AppModule(private val application: Application) {
     @Provides
     fun providesRetrofitInstance(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Utils.BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
             .build()

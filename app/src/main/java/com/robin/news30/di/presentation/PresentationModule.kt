@@ -9,6 +9,7 @@ import com.robin.news30.repository.NewsRepository
 import com.robin.news30.repository.NewsRepositoryImpl
 import com.robin.news30.utils.ImageLoader
 import com.robin.news30.utils.PreferenceRepository
+import com.robin.news30.utils.Utils
 import com.robin.news30.utils.ViewModelProviderFactory
 import com.robin.news30.viewmodel.NewsSourceViewModel
 import com.techyourchance.dagger2course.common.dependnecyinjection.presentation.PresentationScoped
@@ -23,8 +24,8 @@ class PresentationModule {
     fun providesNewsRepository(
         newsApi: NewsApi,
         preferenceRepository: PreferenceRepository,
-        context: Context
-    ): NewsRepository = NewsRepositoryImpl(newsApi, preferenceRepository, context)
+        utils: Utils
+    ): NewsRepository = NewsRepositoryImpl(newsApi, preferenceRepository, utils)
 
     @PresentationScoped
     @Provides
@@ -39,7 +40,7 @@ class PresentationModule {
 
     @PresentationScoped
     @Provides
-    fun providesAdapter(imageLoader: ImageLoader): NewsAdapter {
-        return NewsAdapter(imageLoader)
+    fun providesAdapter(imageLoader: ImageLoader, utils: Utils): NewsAdapter {
+        return NewsAdapter(imageLoader, utils)
     }
 }

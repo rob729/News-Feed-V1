@@ -5,18 +5,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.RequestManager
 import com.robin.news30.databinding.ItemRowBinding
 import com.robin.news30.model.Articles
 import com.robin.news30.utils.ImageLoader
 import com.robin.news30.utils.Utils
 
-class NewsAdapter(val imageLoader: ImageLoader) :
+class NewsAdapter(
+    val imageLoader: ImageLoader,
+    val utils: Utils
+) :
     ListAdapter<Articles, NewsAdapter.ViewHolder>(ArticleDiffCallbacks()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemRowBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemRowBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent, false
+        )
         return ViewHolder(binding)
     }
 
@@ -28,12 +32,15 @@ class NewsAdapter(val imageLoader: ImageLoader) :
     inner class ViewHolder(private val binding: ItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Articles) {
-            item.urlToImage?.let { imageLoader.loadImage(binding.imgNews, it) }
-            binding.titleNews.text = item.title
-            binding.card.preventCornerOverlap = false
-            binding.detail.text = item.description
-            binding.relLayout.setOnClickListener { Utils.setWebView(item.url) }
+            binding.apply {
+                item.urlToImage?.let { imageLoader.loadImage(imgNews, it) }
+                titleNews.text = item.title
+                card.preventCornerOverlap = false
+                detail.text = item.description
+                relLayout.setOnClickListener { utils.setWebView(item.url) }
+            }
         }
+
     }
 
     class ArticleDiffCallbacks : DiffUtil.ItemCallback<Articles>() {
@@ -45,6 +52,4 @@ class NewsAdapter(val imageLoader: ImageLoader) :
             return oldItem == newItem
         }
     }
-
-
 }

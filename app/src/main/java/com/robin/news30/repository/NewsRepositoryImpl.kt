@@ -1,7 +1,6 @@
 package com.robin.news30.repository
 
-import android.content.Context
-import android.util.Log
+import com.robin.news30.R
 import com.robin.news30.model.News
 import com.robin.news30.model.NewsResource
 import com.robin.news30.network.NewsApi
@@ -12,23 +11,26 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-import java.io.IOException
-import java.net.UnknownHostException
 
 class NewsRepositoryImpl(
     private val newsApi: NewsApi,
     private val preferenceRepository: PreferenceRepository,
-    private val context: Context
+    private val utils: Utils
 ) : NewsRepository {
 
     override suspend fun getNews(): NewsResource<News> {
-        if(!Utils.isInternetAvailable(context)){
+        if (!utils.isInternetAvailable()) {
             return NewsResource.Error("Something went wrong", null)
         }
         delay(50)
         val newsSource = preferenceRepository.getNewsSource().first()
-        return getDataFromService(newsApi.getNews(newsSource, Utils.apiKey))
+        return getDataFromService(
+            newsApi.getNews(
+                newsSource,
+                utils.getString(R.string.news_api_key),
+                "en"
+            )
+        )
     }
 
     private val coroutineExceptionHanlder = CoroutineExceptionHandler { _, throwable ->

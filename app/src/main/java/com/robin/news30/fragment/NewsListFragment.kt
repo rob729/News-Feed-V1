@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -15,10 +15,7 @@ import com.robin.news30.utils.ImageLoader
 import com.robin.news30.utils.PreferenceRepository
 import com.robin.news30.utils.Utils
 import com.techyourchance.dagger2course.screens.common.fragments.BaseFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -29,6 +26,9 @@ class NewsListFragment : BaseFragment(), View.OnClickListener {
 
     @Inject
     lateinit var preferenceRepository: PreferenceRepository
+
+    @Inject
+    lateinit var utils: Utils
 
     private var _binding: FragmentNewsListBinding? = null
     private val binding get() = _binding!!
@@ -48,24 +48,22 @@ class NewsListFragment : BaseFragment(), View.OnClickListener {
         // Inflate the layout for this fragment
 
         _binding = FragmentNewsListBinding.inflate(inflater, container, false)
-
         (activity as MainActivity).updateTittle(resources.getString(R.string.app_name))
+        viewBindings()
+        return binding.root
+    }
 
-//        if (!Utils.hasNetwork(context)) {
-//            val toast = Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG)
-//            toast.show()
-//        }
-
+    private fun viewBindings() {
         binding.apply {
-            imageLoader.loadImage(vergeLogo, Utils.getImageUrlFromSourceName("the-verge"))
-            imageLoader.loadImage(wiredLogo, Utils.getImageUrlFromSourceName("wired"))
-            imageLoader.loadImage(techcrunchLogo, Utils.getImageUrlFromSourceName("techcrunch"))
-            imageLoader.loadImage(hinduLogo, Utils.getImageUrlFromSourceName("the-hindu"))
-            imageLoader.loadImage(espnLogo, Utils.getImageUrlFromSourceName("espn-cric-info"))
-            imageLoader.loadImage(redditLogo, Utils.getImageUrlFromSourceName("reddit-r-all"))
-            imageLoader.loadImage(tnwLogo, Utils.getImageUrlFromSourceName("the-next-web"))
-            imageLoader.loadImage(engadgetLogo, Utils.getImageUrlFromSourceName("engadget"))
-            imageLoader.loadImage(scientistLogo, Utils.getImageUrlFromSourceName("new-scientist"))
+            vergeLogo.loadNewsLogo()
+            wiredLogo.loadNewsLogo()
+            techcrunchLogo.loadNewsLogo()
+            hinduLogo.loadNewsLogo()
+            espnLogo.loadNewsLogo()
+            redditLogo.loadNewsLogo()
+            tnwLogo.loadNewsLogo()
+            engadgetLogo.loadNewsLogo()
+            scientistLogo.loadNewsLogo()
 
             verge.setOnClickListener(this@NewsListFragment)
             wired.setOnClickListener(this@NewsListFragment)
@@ -78,7 +76,6 @@ class NewsListFragment : BaseFragment(), View.OnClickListener {
             scientist.setOnClickListener(this@NewsListFragment)
         }
 
-        return binding.root
     }
 
     private fun setInformation(source: String) {
@@ -87,7 +84,7 @@ class NewsListFragment : BaseFragment(), View.OnClickListener {
         }
         args.apply {
             putString("source", source)
-            putString("Name", Utils.getName(source))
+            putString("Name", utils.getName(source))
         }
         val navOptions =
             NavOptions.Builder().setEnterAnim(R.anim.nav_default_enter_anim).setExitAnim(
@@ -99,19 +96,26 @@ class NewsListFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        val newsSource = when (v) {
-            binding.verge -> "the-verge"
-            binding.wired -> "wired"
-            binding.techcrunch -> "techcrunch"
-            binding.hindu -> "the-hindu"
-            binding.reddit -> "reddit-r-all"
-            binding.espn -> "espn-cric-info"
-            binding.tnw -> "the-next-web"
-            binding.scientist -> "new-scientist"
-            binding.engadget -> "engadget"
-            else -> "the-verge"
+        setInformation(getNewsDomain(v))
+    }
+
+    private fun getNewsDomain(view: View?): String {
+        return when (view) {
+            binding.verge, binding.vergeLogo -> getString(R.string.verge_domain)
+            binding.wired, binding.wiredLogo -> getString(R.string.wired_domain)
+            binding.techcrunch, binding.techcrunchLogo -> getString(R.string.techcrunch_domain)
+            binding.hindu, binding.hinduLogo -> getString(R.string.the_hindu_domain)
+            binding.reddit, binding.redditLogo -> getString(R.string.reddit_domain)
+            binding.espn, binding.espnLogo -> getString(R.string.espn_domain)
+            binding.tnw, binding.tnwLogo -> getString(R.string.the_next_web_domain)
+            binding.scientist, binding.scientistLogo -> getString(R.string.new_scientist_domain)
+            binding.engadget, binding.engadgetLogo -> getString(R.string.engadget_domain)
+            else -> getString(R.string.verge_domain)
         }
-        setInformation(newsSource)
+    }
+
+    private fun ImageView.loadNewsLogo() {
+        imageLoader.loadImage(this, utils.getImageUrlFromDomainName(getNewsDomain(this)))
     }
 
     override fun onDestroyView() {

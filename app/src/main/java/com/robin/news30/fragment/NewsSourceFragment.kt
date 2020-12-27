@@ -7,9 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -48,22 +45,18 @@ class NewsSourceFragment : BaseFragment(), NetworkStateReceiver.NetworkStateRece
         // Inflate the layout for this fragment
 
         _binding = FragmentSourceNewsBinding.inflate(inflater, container, false)
-
         (activity as MainActivity).updateTittle(" ")
-
         networkStateReceiver = NetworkStateReceiver()
         networkStateReceiver!!.addListener(this)
         context?.registerReceiver(
             networkStateReceiver,
             IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         )
-
         viewBindings()
-
         return binding.root
     }
 
-    private fun viewBindings(){
+    private fun viewBindings() {
         binding.apply {
             recyclerView.apply {
                 addItemDecoration(
@@ -108,8 +101,11 @@ class NewsSourceFragment : BaseFragment(), NetworkStateReceiver.NetworkStateRece
     }
 
     override fun networkUnavailable() {
-        //Toast.makeText(context, "Please check your internet connection", Toast.LENGTH_SHORT).show()
-        Snackbar.make(binding.recyclerView, "Please check your internet connection", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(
+            binding.recyclerView,
+            "Please check your internet connection",
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
     override fun onDestroyView() {

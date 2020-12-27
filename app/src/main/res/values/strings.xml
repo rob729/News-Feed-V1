@@ -17,4 +17,14 @@
     <string name="title">Title</string>
     <string name="news_detail">News Detail</string>
     <string name="news_title">News Title</string>
+    <string name="verge_domain">theverge.com</string>
+    <string name="wired_domain">wired.com</string>
+    <string name="techcrunch_domain">techcrunch.com</string>
+    <string name="the_hindu_domain">thehindu.com</string>
+    <string name="reddit_domain">reddit.com</string>
+    <string name="espn_domain">espncricinfo.com</string>
+    <string name="the_next_web_domain">thenextweb.com</string>
+    <string name="new_scientist_domain">newscientist.com</string>
+    <string name="engadget_domain">engadget.com</string>
+    <string name="news_api_key">4663b6001744472eaac1f5aa16076a7a</string>
 </resources>

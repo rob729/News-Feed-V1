@@ -21,7 +21,6 @@ class NewsSourceViewModel(
         get() = _news
 
     init {
-        Log.e("TAG1", "init1")
         fetchNews()
     }
 
