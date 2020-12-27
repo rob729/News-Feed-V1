@@ -65,15 +65,15 @@ class Utils @Inject constructor(private val context: Context) {
 
     fun getImageUrlFromDomainName(domain: String): String {
         return when (domain) {
-            getString(R.string.verge_domain) -> "https://cdn.vox-cdn.com/uploads/chorus_asset/file/7395359/ios-icon.0.png"
-            getString(R.string.wired_domain) -> "https://www.wired.com/apple-touch-icon.png"
+            getString(R.string.verge_domain) -> "https://kahoot.com/files/2020/10/the-verge-logo.jpg"
+            getString(R.string.wired_domain) -> "https://res-2.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1489030150/i1jbqbfetqzi8dr9nmvb.png"
             getString(R.string.techcrunch_domain) -> "https://pbs.twimg.com/profile_images/1096066608034918401/m8wnTWsX.png"
-            getString(R.string.the_hindu_domain) -> "https://icon-locator.herokuapp.com/lettericons/T-120-ffffff.png"
+            getString(R.string.the_hindu_domain) -> "https://planetabled.com/wp-content/uploads/2019/07/The-Hindu-Logo.jpg"
             getString(R.string.espn_domain) -> "https://images-na.ssl-images-amazon.com/images/I/21h-OE4-X7L._SY355_.png"
             getString(R.string.reddit_domain) -> "https://www.redditstatic.com/mweb2x/favicon/120x120.png"
-            getString(R.string.the_next_web_domain) -> "https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/icons/apple-touch-icon-120x120.png"
+            getString(R.string.the_next_web_domain) -> "https://assets.stickpng.com/thumbs/5841a001a6515b1e0ad75a6e.png"
             getString(R.string.engadget_domain) -> "https://s.blogsmithmedia.com/www.engadget.com/assets-h530cd5ea4f940095be1a3f313af013dc/images/apple-touch-icon-120x120.png?h=232a14b1a350de05a49b584a62abac9e"
-            getString(R.string.new_scientist_domain) -> "https://www.newscientist.com/wp-content/themes/new-scientist/img/layup/touch-icon/144x144.png"
+            getString(R.string.new_scientist_domain) -> "https://is5-ssl.mzstatic.com/image/thumb/Purple114/v4/f1/5a/51/f15a5132-65b6-6966-b50a-45be69857b33/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/1200x630wa.png"
             else -> " "
         }
     }
